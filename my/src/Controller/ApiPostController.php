@@ -16,5 +16,7 @@ class ApiPostController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->json($articleRepository->findAll(), 200, []);
+
     }
+
 }
