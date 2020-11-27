@@ -2,6 +2,7 @@ import './App.css';
 import React from "react";
 import ReactDOM from "react-dom";
 import Section from './components/Sections';
+import Navbar from './components/Navbar/Navbar';
 
 class App extends React.Component {
   constructor() {
@@ -14,19 +15,16 @@ class App extends React.Component {
         return response.json()
       })
       .then((result) => {
-        console.log("1.5", this.state.sections)
-        this.setState({ sections: result["hydra:member"] })
-        console.log("2", this.state.sections)
-      })
-  }
 
-  componentDidMount() {
+        this.setState({ sections: result["hydra:member"] })
+
+      })
   }
 
   render() {
     return (
       <div>
-
+          <Navbar />
         { this.state.sections.map((value, index) => 
           {
             return <Section
@@ -40,7 +38,6 @@ class App extends React.Component {
             />
           })
         }
-
       </div>
     );
   }

@@ -10,10 +10,10 @@ class Section extends React.Component {
     
     render() {
         return (
-          <div>
-            <h1>titre: {this.props.title}</h1>
-            <h2>Texte: {this.props.content}</h2>
-            <h3>Img: {this.props.image}</h3>
+          <div className="section">
+            <h1>{this.props.title}</h1> <hr></hr>
+            <h2>{this.props.content}</h2>
+            <h3>{this.props.image}</h3>
           </div>
         );
     }
