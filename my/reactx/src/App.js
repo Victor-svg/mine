@@ -3,12 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Section from './components/Sections';
 import Navbar from './components/Navbar/Navbar';
+import Projets from './components/Projets';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      sections: []
+      sections: [],
+      footer: []
     };
     fetch('http://localhost:8000/apip/articles')
       .then((response) => {
@@ -19,12 +21,21 @@ class App extends React.Component {
         this.setState({ sections: result["hydra:member"] })
 
       })
-  }
+      fetch('http://localhost:8000/apip/projets')
+      .then((response) => {
+        return response.json()
+      })
+      .then((result) => {
 
+        this.setState({ footer: result["hydra:member"] })
+
+      })
+  }
+  
   render() {
     return (
       <div>
-          <Navbar />
+        <Navbar />
         { this.state.sections.map((value, index) => 
           {
             return <Section
@@ -38,6 +49,24 @@ class App extends React.Component {
             />
           })
         }
+        <div className="portfolio">
+          <div className="headerPort">
+            <h1>Voici la Liste des derniers projets</h1>  <hr></hr>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+          </div>
+            { this.state.footer.map((val, index) => 
+              {
+                return <Projets 
+                  
+                  type={val["@type"]}
+                  content={val.content}
+                  id={val.id}
+                  img={val.img}
+                  title={val.title}
+                />
+              })
+            }
+          </div>
       </div>
     );
   }

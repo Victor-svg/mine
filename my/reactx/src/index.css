@@ -17,10 +17,59 @@ code {
 {
   background: linear-gradient(45deg, rgb(188 188 208 / 28%), #1e1e6d70);
   height: 100vh;
+  text-align: center;
 }
 hr
 {
-  border-top: 2px inset grey;
+  border-top: 1px inset grey;
   width: 90%;
 
+}
+.portfolio
+{
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 62%;
+  justify-content: center;
+  background: whitesmoke;
+  border: 1px inset midnightblue;
+  margin-top: 10px;
+}
+.headerPort
+{
+  text-align: center;
+}
+.projets
+{
+  width: 350px;
+  height: 250px;
+  margin: 5%;
+}
+figure {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+figcaption {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  position: relative;
+  width: 100%;
+  height: 72px;
+  bottom: 83px;
+  text-align: center;
+  
+}
+
+.banner h5 {
+  margin: auto;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+img
+{
+  width: 100%;
+  height: 100%;
 }
