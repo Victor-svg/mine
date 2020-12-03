@@ -17,6 +17,18 @@
             </div>
         </article>
     {% endfor %}
+    <hr>
+    {% for projet in projets %}
+        <projet>
+            <h2>{{ projet.title }}</h2>
+            <div class="content">
+            <p>{{ projet.content | raw }}</p>
+                <img src="{{ projet.img }}" alt="">
+                <a href="{{ path('pro_edit', { 'id': projet.id }) }}" class ="btn btn-primary"> Modifier </a>
+                <a href="{{ path('pro_delete', { 'id': projet.id }) }}" onclick="return confirm('Supprimer ?')" class ="btn btn-danger"> Supprimer la section </a>
+            </div>
+        </projet>
+    {% endfor %}
 
 </section>
 

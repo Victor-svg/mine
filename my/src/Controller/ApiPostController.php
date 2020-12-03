@@ -26,6 +26,7 @@ class ApiPostController extends AbstractController
     public function projets(ProjetsRepository $projetsRepository): Response
     {
         return $this->json($projetsRepository->findAll(), 200, []);
+        
 
     }
 
