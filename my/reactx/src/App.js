@@ -36,6 +36,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
+
         { this.state.sections.map((value, index) => 
           {
             return <Section
@@ -47,6 +48,7 @@ class App extends React.Component {
               title={value.title}
 
             />
+            
           })
         }
         <div className="portfolio">
@@ -67,6 +69,7 @@ class App extends React.Component {
               })
             }
           </div>
+          
       </div>
     );
   }

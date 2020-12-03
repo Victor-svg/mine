@@ -15,13 +15,17 @@ code {
 .section
 {
   background: linear-gradient(45deg, rgb(188 188 208 / 28%), #1e1e6d70);
-  height: 100vh;
   text-align: center;
 }
 hr
 {
   border-top: 1px inset grey;
   width: 90%;
+
+}
+h1
+{
+  margin-block-start: 0;
 
 }
 .portfolio
@@ -71,4 +75,29 @@ img
 {
   width: 100%;
   height: 100%;
+}
+
+.boxes {
+  margin: 45px;
+  background-color: whitesmoke;
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px 10px 10px 10px;
+  width: 267px;
+  height: 200px;
+}
+.grids
+{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cards
+{
+  margin: auto;
+  width: 58%;
+  background: whitesmoke;
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  height: 75%;
 }
