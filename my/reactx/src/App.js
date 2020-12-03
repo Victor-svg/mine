@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import Section from './components/Sections';
 import Navbar from './components/Navbar/Navbar';
 import Projets from './components/Projets';
+import Accueil from './components/Accueil';
 
 class App extends React.Component {
   constructor() {
@@ -36,7 +37,7 @@ class App extends React.Component {
     return (
       <div>
         <Navbar />
-
+      <Accueil />
         { this.state.sections.map((value, index) => 
           {
             return <Section
