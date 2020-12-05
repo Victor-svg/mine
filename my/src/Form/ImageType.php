@@ -2,28 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Projets;
+use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-
-class ProjetType extends AbstractType
+class ImageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content')
-
-            ->add('image', ImageType::class)
+            ->add('file', FileType::class, ["label" => "ajouter une image"])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Projets::class,
+            'data_class' => Image::class,
         ]);
     }
 }

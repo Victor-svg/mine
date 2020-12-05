@@ -87,6 +87,23 @@ class BlogController extends AbstractController
         
         if($formPro->isSubmitted() && $formPro->isValid()) {
 
+            $path = $this->getParameter('kernel.project_dir') .'/public/images';
+            // recupere l image 
+            $image = $projet->getImage();
+            
+            // recupere le file soumis
+            $file = $image->getFile();
+
+            // créer un nom unique
+            $name = md5(uniqid()). '.'.$file->guessExtension();
+
+            // déplace le fichier
+            $file->move($path, $name);
+
+            // donne le nom à l'image
+            $image->setName($name);
+
+
             $manager->persist($projet);
             $manager->flush();
     

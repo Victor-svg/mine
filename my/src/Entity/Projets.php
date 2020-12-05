@@ -33,7 +33,13 @@ class Projets
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $img;
+    //private $image;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -64,15 +70,14 @@ class Projets
         return $this;
     }
 
-    public function getImg(): ?string
+    public function getImage(): ?Image
     {
-        return $this->img;
+        return $this->image;
     }
 
-    public function setImg(string $img): self
+    public function setImage($image): void
     {
-        $this->img = $img;
+        $this->image = $image;
 
-        return $this;
     }
 }
