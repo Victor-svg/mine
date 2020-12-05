@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% form_theme formPro 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    {% if editMode %}
+                <h1>Modifier L'article</h1>
+            {% else %}
+               <h1>Création d'un article !</h1>
+            {% endif %}  
+
+    {{ form_start(formPro) }}
+
+        {{ form_row(formPro) }}
+        <button type="submit" onclick="return confirm('Valider ?')" class="btn btn-success">
+            {% if editMode %}
+                Enregistrer  
+            {% else %}
+                Ajouter le projet
+            {% endif %}
+
+        </button>
+    {{ form_end(formPro) }}
+
+
+{% endblock %}

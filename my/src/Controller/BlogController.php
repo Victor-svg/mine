@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Projets;
 use App\Form\ArticleType;
+use App\Form\ProjetType;
 use App\Repository\ArticleRepository;
+use App\Repository\ProjetsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -20,14 +23,16 @@ class BlogController extends AbstractController
      * @Route("/blog", name="blog")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function index(ArticleRepository $repo)
+    public function index(ArticleRepository $repo, ProjetsRepository $reprojet)
     {
         $articles = $repo->findAll();
-        
+        $projets = $reprojet->findAll();
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
-            'articles' => $articles
+            'articles' => $articles,
+            'projets' => $projets
         ]);
+        
     }
     
     /** 
@@ -62,9 +67,57 @@ class BlogController extends AbstractController
 
         return $this->render('blog/create.html.twig', [
             'formArticle' => $form->createView(),
-            'editMode' => $article->getId() !== null
+            'editMode' => $article->getId() !== null,
         ]);
     }
+
+    /**
+     * @Route("/blog/newPro", name="pro_create")
+     * @Route("/blog/{id}/editpro", name="pro_edit")
+     *@IsGranted("ROLE_ADMIN")
+     */ 
+    public function formPro(Projets $projet = null, Request $request, EntityManagerInterface $manager) {
+        
+        if(!$projet) {
+            $projet = new Projets();
+        }
+        $formPro = $this->createForm(ProjetType::class, $projet);
+
+        $formPro->handleRequest($request);
+        
+        if($formPro->isSubmitted() && $formPro->isValid()) {
+
+            $path = $this->getParameter('kernel.project_dir') .'/public/images';
+            // recupere l image 
+            $image = $projet->getImage();
+            
+            // recupere le file soumis
+            $file = $image->getFile();
+
+            // créer un nom unique
+            $name = md5(uniqid()). '.'.$file->guessExtension();
+
+            // déplace le fichier
+            $file->move($path, $name);
+
+            // donne le nom à l'image
+            $image->setName($name);
+
+
+            $manager->persist($projet);
+            $manager->flush();
+    
+            return $this->redirectToRoute('blog', ['id' => $projet->getId()]);
+
+        };
+        return $this->render('blog/createPro.html.twig', [
+
+            'formPro' => $formPro->createView(),
+            'editMode' => $projet->getId() !== null,
+        ]);
+    }               
+    
+
     /**
      *@Route("/blog/{id}/delete", name="article_delete")
      *@IsGranted("ROLE_ADMIN")
@@ -73,9 +126,21 @@ class BlogController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->remove($article);
         $em->flush();
-        $this->addFlash('success', 'Article Created! Knowledge is power!');
+        $this->addFlash('success', 'Article Supprimé! ');
         return $this->redirectToRoute('blog');
         
     }
-    
+    /**
+     *@Route("/blog/{id}/deletepro", name="pro_delete")
+     *@IsGranted("ROLE_ADMIN")
+     */
+    public function deletePro(Projets $projet) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($projet);
+        $em->flush();
+        $this->addFlash('success', 'Projet Supprimé! ');
+        return $this->redirectToRoute('blog');
+        
+    }
+  
 }

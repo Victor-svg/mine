@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: emoji;
+  font-size: x-large;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.section
+{
+  background: linear-gradient(45deg, rgb(188 188 208 / 28%), #1e1e6d70);
+  text-align: center;
+}
+hr
+{
+  border-top: 1px inset grey;
+  width: 90%;
+
+}
+h1
+{
+  margin-block-start: 0;
+
+}
+.portfolio
+{
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 62%;
+  justify-content: center;
+  background: whitesmoke;
+  border: 1px inset midnightblue;
+  margin-top: 10px;
+}
+.headerPort
+{
+  text-align: center;
+}
+.projets
+{
+  width: 350px;
+  height: 250px;
+  margin: 5%;
+}
+figure {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+figcaption {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  position: relative;
+  width: 100%;
+  bottom: 83px;
+  text-align: center;
+  
+}
+
+.banner h5 {
+  margin: auto;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.banner p
+{
+  visibility: hidden;
+}
+img
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.boxes {
+  margin: 45px;
+  background-color: whitesmoke;
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px 10px 10px 10px;
+  width: 267px;
+  height: 200px;
+}
+.grids
+{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cards
+{
+  margin: auto;
+  width: 58%;
+  background: whitesmoke;
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+  margin-top: 10px;
+  height: 75%;
+}
+.cartes
+{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+.grande
+{
+  margin: 10px;
+  background-color: whitesmoke;
+  box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+
+  width: 550px;
+<<<<<<< HEAD
+  height: 100%;
+=======
+  height: 750px;
+>>>>>>> 72f8066554195120ad00707dd4dcfb945a9ba8ee
+  padding: 25px;
+}
+.petite
+{
+  box-shadow: 0px 12px 16px -1px rgba(0, 0, 0, 0.3);
+  width: 407px;
+  height: 670px;
+  margin-top: 4%;
+  margin-left: -27px;
+  padding: 14px;
+}
+.petite p
+{
+  height: 85%;
+}

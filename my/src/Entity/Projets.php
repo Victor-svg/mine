@@ -3,15 +3,15 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\ArticleRepository;
+use App\Repository\ProjetsRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=ArticleRepository::class)
- * @ApiResource
+ * @ApiResource()
+ * @ORM\Entity(repositoryClass=ProjetsRepository::class)
  */
-class Article
+class Projets
 {
     /**
      * @ORM\Id
@@ -22,19 +22,22 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, max=255)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text")
-     * @Assert\Length(min=10)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url()
+     * @ORM\Column(type="string", length=255)
+     */
+    //private $image;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove"})
      */
     private $image;
 
@@ -60,22 +63,21 @@ class Article
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage(): ?Image
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage($image): void
     {
         $this->image = $image;
-        
-        return $this;
+
     }
 }

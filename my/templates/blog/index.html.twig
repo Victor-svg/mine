@@ -17,6 +17,25 @@
             </div>
         </article>
     {% endfor %}
+    <hr>
+    {% for projet in projets %}
+        <projet>
+            <h2>{{ projet.title }}</h2>
+            <div class="content">
+            <p>{{ projet.content | raw }}</p>
+
+                {% if projet.image.name is defined %}
+                <img src="{{ asset('images/')~projet.image.name }}">
+                {% else %}
+                <p>Pas d'image</p>
+                {% endif %}
+
+                <a href="{{ path('pro_edit', { 'id': projet.id }) }}" class ="btn btn-primary"> Modifier </a>
+                <a href="{{ path('pro_delete', { 'id': projet.id }) }}" onclick="return confirm('Supprimer ?')" class ="btn btn-danger"> Supprimer la section </a>
+            </div>
+        </projet>
+        <hr>
+    {% endfor %}
 
 </section>
 
